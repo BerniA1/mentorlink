@@ -174,7 +174,7 @@ La compatibilidad entre mentee y mentor se calculará mediante una puntuación p
 #### RF3.4 Cierre de mentoría
 
 - Cualquiera de los participantes podrá cerrar la mentoría.
-- Al cerrar, se solicitará valoración mutua (véase RF5).
+- Al cerrar, el mentee podrá valorar al mentor (véase RF5).
 - Una mentoría cerrada pasará a estado **completada** y no admitirá nuevas sesiones.
 
 #### RF3.5 Historial
@@ -211,7 +211,7 @@ La compatibilidad entre mentee y mentor se calculará mediante una puntuación p
 
 #### RF5.1 Valoración al cerrar
 
-- Al cerrar una mentoría completada, el sistema solicitará a cada participante que valore al otro con una puntuación de 1 a 5 estrellas y un comentario opcional.
+- Al cerrar una mentoría completada, el sistema solicitará al mentee que valore al mentor con una puntuación de 1 a 5 estrellas y un comentario opcional.
 - La valoración es opcional pero se incentivará mostrando un recordatorio.
 
 #### RF5.2 Puntuación acumulada
@@ -221,7 +221,7 @@ La compatibilidad entre mentee y mentor se calculará mediante una puntuación p
 
 #### RF5.3 Visibilidad
 
-- Las valoraciones y comentarios serán visibles públicamente en el perfil del valorado.
+- Las valoraciones y comentarios serán visibles públicamente en el perfil del mentor valorado.
 - El autor de una valoración no será anónimo.
 
 ---
@@ -257,7 +257,7 @@ Se identifica como trabajo futuro un módulo de moderación que incluiría:
 
 ### RNF4 — Disponibilidad
 
-- Se apuntará a una disponibilidad del 95 % durante el periodo de evaluación del TFG.
+- El sistema estará disponible durante el periodo de demostración funcional del TFG, sujeto a la disponibilidad del servicio Supabase.
 
 ### RNF5 — Mantenibilidad
 
@@ -307,11 +307,11 @@ ratings
 
 ```
 [Solicitud enviada]
-       │
-       ▼
-   PENDIENTE
-   /        \
-RECHAZADA   ACTIVA
-               │
-           COMPLETADA
+        │
+        ▼
+    PENDIENTE
+    /         \
+RECHAZADA    ACTIVA ──→ RECHAZADA
+                │         (cancelada por mentor)
+            COMPLETADA
 ```
