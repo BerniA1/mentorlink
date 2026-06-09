@@ -13,7 +13,7 @@
 1. [Introducción](#1-introducción)
 2. [Descripción general](#2-descripción-general)
 3. [Requisitos específicos](#3-requisitos-específicos)
-4. [Requisitos no funcionales](#4-requisitos-no-funcionales)
+4. [Requisitos no funcionales y restricciones](#4-requisitos-no-funcionales)
 5. [Apéndices](#5-apéndices)
 
 ---
@@ -257,12 +257,26 @@ Se identifica como trabajo futuro un módulo de moderación que incluiría:
 
 ### RNF4 — Disponibilidad
 
-- El sistema estará disponible durante el periodo de demostración funcional del TFG, sujeto a la disponibilidad del servicio Supabase.
+- Sin SLA formal; el sistema debe funcionar correctamente durante el periodo de demostración funcional del TFG.
 
 ### RNF5 — Mantenibilidad
 
 - El código se organizará en módulos separados para autenticación, matching, mentorías, chat y valoraciones.
-- Se documentará la API mediante comentarios inline o un archivo OpenAPI.
+- La API REST se documentará mediante un archivo OpenAPI (YAML/JSON), generado o mantenido manualmente junto al código fuente.
+
+---
+
+### RNF6 — Restricciones del sistema
+
+Las siguientes restricciones delimitan el alcance técnico y de negocio de la versión entregada como TFG:
+
+| # | Restricción | Detalle |
+|---|-------------|---------|
+| C1 | Comunidad exclusiva UPV | La plataforma está destinada únicamente a estudiantes y egresados de la Universitat Politècnica de València. No se permitirá el acceso a usuarios externos. |
+| C2 | Sin integración institucional | No se integra con el directorio LDAP ni con el sistema de matrícula de la UPV en esta versión. La verificación de pertenencia a la UPV queda pendiente de trabajo futuro. |
+| C3 | Sin moderación automática | No existe módulo de moderación automática de mensajes ni valoraciones. Esta funcionalidad se identifica como trabajo futuro (véase RF6). |
+| C4 | Sin archivos adjuntos en el chat | El canal de mensajería no soporta el envío de archivos adjuntos ni imágenes. Solo se admite texto plano. |
+| C5 | Stack gratuito | Toda la infraestructura utiliza planes gratuitos: React + Vite (frontend), Node.js + Express (backend) y Supabase Free Tier (base de datos, autenticación y tiempo real). No se incurrirá en coste de hosting durante el TFG. |
 
 ---
 
