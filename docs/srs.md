@@ -12,7 +12,7 @@
 
 1. [Introducción](#1-introducción)
 2. [Descripción general](#2-descripción-general)
-3. [Requisitos específicos](#3-requisitos-específicos)
+3. [Requisitos específicos](#3-requisitos-específicos) (RF1–RF8)
 4. [Requisitos no funcionales y restricciones](#4-requisitos-no-funcionales)
 5. [Apéndices](#5-apéndices)
 
@@ -81,7 +81,7 @@ MentorLink es una aplicación web de nueva creación, independiente de los siste
 ### 2.4 Restricciones
 
 - El sistema está destinado exclusivamente a la comunidad UPV.
-- La moderación de contenidos queda fuera del alcance del TFG actual (véase RF6).
+- La moderación de contenidos queda fuera del alcance del TFG actual (véase RF8).
 - No se integra con el sistema de matrícula ni con el directorio LDAP de la UPV en esta versión.
 
 ### 2.5 Suposiciones y dependencias
@@ -119,6 +119,12 @@ MentorLink es una aplicación web de nueva creación, independiente de los siste
 
 - El usuario podrá modificar cualquier campo del perfil en cualquier momento.
 - Los cambios en asignaturas o habilidades actualizarán su visibilidad en el motor de matching de forma inmediata.
+
+#### RF1.5 Recuperación de contraseña
+
+- El usuario podrá solicitar el restablecimiento de su contraseña desde la pantalla de inicio de sesión.
+- El sistema enviará un enlace de restablecimiento al correo electrónico registrado, gestionado por Supabase Auth.
+- El enlace de restablecimiento tendrá una validez limitada en el tiempo; pasado ese plazo el usuario deberá solicitar uno nuevo.
 
 ---
 
@@ -203,7 +209,7 @@ La compatibilidad entre mentee y mentor se calculará mediante una puntuación p
 #### RF4.4 Restricciones del chat
 
 - No se soportarán archivos adjuntos ni imágenes en esta versión.
-- El contenido de los mensajes no será moderado automáticamente en esta versión (véase RF6).
+- El contenido de los mensajes no será moderado automáticamente en esta versión (véase RF8).
 
 ---
 
@@ -226,7 +232,45 @@ La compatibilidad entre mentee y mentor se calculará mediante una puntuación p
 
 ---
 
-### RF6 — Moderación (trabajo futuro)
+### RF6 — Notificaciones
+
+#### RF6.1 Eventos notificables
+
+El sistema generará una notificación al usuario afectado en los siguientes eventos:
+
+| Evento | Destinatario |
+|--------|-------------|
+| Nueva solicitud de mentoría recibida | Mentor |
+| Solicitud aceptada | Mentee |
+| Solicitud rechazada | Mentee |
+| Nuevo mensaje en el chat | El participante que no envió el mensaje |
+| Mentoría cerrada por la otra parte | Ambos participantes |
+
+#### RF6.2 Canal de notificación
+
+- Las notificaciones se mostrarán dentro de la propia aplicación (in-app) mediante un indicador en la barra de navegación.
+- Adicionalmente, el sistema enviará un correo electrónico al destinatario para los eventos de solicitud recibida, solicitud aceptada y solicitud rechazada.
+- El usuario podrá consultar el historial de notificaciones desde la aplicación.
+
+---
+
+### RF7 — Panel de inicio
+
+#### RF7.1 Vista principal tras el login
+
+- Tras autenticarse, el usuario accederá a un panel de inicio que mostrará:
+  - Sus mentorías activas con el estado y la fecha de la última actividad.
+  - Sus solicitudes pendientes de respuesta (como mentor o como mentee).
+  - El número de mensajes no leídos en el chat.
+
+#### RF7.2 Accesos rápidos
+
+- El panel incluirá accesos directos a: buscar mentor (motor de matching), ver perfil propio y consultar historial de mentorías.
+- Si el usuario no tiene mentorías ni solicitudes, el panel mostrará un mensaje de bienvenida con un enlace al motor de matching.
+
+---
+
+### RF8 — Moderación (trabajo futuro)
 
 > **Fuera del alcance del TFG actual.**
 
@@ -274,7 +318,7 @@ Las siguientes restricciones delimitan el alcance técnico y de negocio de la ve
 |---|-------------|---------|
 | C1 | Comunidad exclusiva UPV | La plataforma está destinada únicamente a estudiantes y egresados de la Universitat Politècnica de València. No se permitirá el acceso a usuarios externos. |
 | C2 | Sin integración institucional | No se integra con el directorio LDAP ni con el sistema de matrícula de la UPV en esta versión. La verificación de pertenencia a la UPV queda pendiente de trabajo futuro. |
-| C3 | Sin moderación automática | No existe módulo de moderación automática de mensajes ni valoraciones. Esta funcionalidad se identifica como trabajo futuro (véase RF6). |
+| C3 | Sin moderación automática | No existe módulo de moderación automática de mensajes ni valoraciones. Esta funcionalidad se identifica como trabajo futuro (véase RF8). |
 | C4 | Sin archivos adjuntos en el chat | El canal de mensajería no soporta el envío de archivos adjuntos ni imágenes. Solo se admite texto plano. |
 | C5 | Stack gratuito | Toda la infraestructura utiliza planes gratuitos: React + Vite (frontend), Node.js + Express (backend) y Supabase Free Tier (base de datos, autenticación y tiempo real). No se incurrirá en coste de hosting durante el TFG. |
 
