@@ -33,16 +33,10 @@ tfg/
 Esqueleto inicial creado. Sin lógica de negocio todavía.
 
 ## Decisiones tomadas
-
-- Idioma de comunicación con Claude: **español**.
-- Repositorio en `/home/ayuda62/tfg`.
 - Arquitectura: monorepo con carpetas `frontend/` y `backend/` separadas.
 - ORM/cliente Supabase: por definir (candidatos: `@supabase/supabase-js` en frontend y/o backend).
 
 ## Convenciones
-
-- Responder siempre en español.
-- Preferir editar archivos existentes antes de crear nuevos.
 - Sin comentarios de código salvo que el *por qué* no sea obvio.
 
 ## Contacto / Autor
